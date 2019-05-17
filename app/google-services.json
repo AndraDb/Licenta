@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "88288128558",
+    "firebase_url": "https://licenta-4f61f.firebaseio.com",
+    "project_id": "licenta-4f61f",
+    "storage_bucket": "licenta-4f61f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88288128558:android:d9005703e86f6ba4",
+        "android_client_info": {
+          "package_name": "com.example.pethealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88288128558-77d5229us65afinpfcf4h4eovtoutqdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI6zno538m_d8PSVl0oSa9BNYufaeA6M4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

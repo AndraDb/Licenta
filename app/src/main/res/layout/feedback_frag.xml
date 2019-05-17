@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            app:srcCompat="@drawable/feedback" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thank you for taking your time in order to complete this feedback of my app .Every word written there can help me improve your experience regarding my app."
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="151dp" />
+
+        <Button
+            android:id="@+id/feedbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click here to get to the form" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

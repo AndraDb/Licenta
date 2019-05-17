@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Register2Activity"
+    tools:showIn="@layout/activity_register2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="113dp"
+                app:srcCompat="@drawable/logo2" />
+
+            <View
+                android:id="@+id/divider10"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/userView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/divider11"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Choose pet:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/typeGroup"
+                android:layout_width="match_parent"
+                android:layout_height="91dp">
+
+                <RadioButton
+                    android:id="@+id/catBtn"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorDarkPurple"
+                    android:fontFamily="casual"
+                    android:text="Cat"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/dogBtn"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorDarkPurple"
+                    android:checked="false"
+                    android:fontFamily="casual"
+                    android:text="Dog"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+            </RadioGroup>
+
+            <View
+                android:id="@+id/divider13"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/breedR2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Your pet breed"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/ageR2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Your pet age"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/petNameR2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Your pet name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/medsR2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Your pet medical issues"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/petWeightR2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Your pet weight"
+                android:inputType="number" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/doneBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:fontFamily="casual"
+                android:text="DONE"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/divider26"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
