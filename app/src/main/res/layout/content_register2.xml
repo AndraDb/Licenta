@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorLavender"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Register2Activity"
     tools:showIn="@layout/activity_register2">
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Choose pet:"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
             <RadioGroup
@@ -153,10 +153,10 @@
                 android:id="@+id/doneBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorAccent"
                 android:fontFamily="casual"
                 android:text="DONE"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
             <View

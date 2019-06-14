@@ -125,7 +125,8 @@ Log.e("Mainapp","Suntem in on NaivigationItemSelected");
             startActivity(new Intent(MainApp.this,MainApp.class));
         }
         else if (id == R.id.nav_feedback) {
-//google form feedback ?
+            getSupportFragmentManager().beginTransaction().replace(R.id.progress,
+                    new FeedbackFragment()).commit();
         }
         else if(id==R.id.nav_logout)
         {

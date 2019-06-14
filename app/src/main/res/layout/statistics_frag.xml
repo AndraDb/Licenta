@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorLavender">
 
     <LinearLayout
         android:layout_width="395dp"
@@ -48,5 +48,92 @@
             android:textAlignment="center"
             android:textColor="@color/colorDarkPurple"
             android:textSize="24sp" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/day2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Day"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/month2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Month"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/steps2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Steps"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/calories2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Calories"
+                    android:textColor="@color/colorPrimary" />
+            </TableRow>
+
+            <TableRow>
+                android:id="@+id/row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/day"
+                android:layout_weight="0.25"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/month"
+                android:layout_weight="0.25"
+                android:gravity="center"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/steps"
+                    android:layout_weight="0.25"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/calories"
+                    android:layout_weight="0.25"
+                    android:gravity="center"/>
+
+            </TableRow>
+
+
+
+        </TableLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

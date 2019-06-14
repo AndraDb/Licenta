@@ -1,5 +1,7 @@
 package com.example.pethealth;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,10 +17,18 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         Log.e("My account frag","Ajunge aicea ");
-        return inflater.inflate(R.layout.feedback_frag, container, false);
-        //feedform=(Button)findViewById(R.id.feedbtn);
+        View view=inflater.inflate(R.layout.feedback_frag, container, false);
 
+         feedform=(Button)view.findViewById(R.id.feedbtn);
+        feedform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browser=new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSetf5BZOAVGjaUn5QzFGn-9_F6OXy1mJiLHsqRT5TES22JGvw/viewform"));
+                startActivity(browser);
+            }
+        });
 
+ return view;
     }
 
 }

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             if(firebaseAuth.getCurrentUser()!=null)
             {
 
-                startActivity(new Intent(LoginActivity.this,MainApp.class));
+                startActivity(new Intent(LoginActivity.this,SplashScreen.class));
                 //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
             }

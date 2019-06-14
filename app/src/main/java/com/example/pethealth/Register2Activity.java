@@ -41,20 +41,33 @@ private Button done;
         username=(TextView)findViewById(R.id.userView);
         username.setText(myDb.getUsername(FirebaseAuth.getInstance().getCurrentUser().getUid()).toString());
         Log.e("Register 2","Am ajuns aici la register 2");
-
+        final RadioButton cat = (RadioButton) findViewById(R.id.catBtn);
+       final RadioButton dog = (RadioButton) findViewById(R.id.dogBtn);
         done=(Button)findViewById(R.id.doneBtn);
-        int radiogroupID=type.getCheckedRadioButtonId();
+        final int radiogroupID=type.getCheckedRadioButtonId();
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean ver= myDb.insertDataPet(FirebaseAuth.getInstance().getCurrentUser().getUid(), "cat", breed.getText().toString(), name.getText().toString()
-                        , Integer.parseInt(age.getText().toString()),
-                        Integer.parseInt(weight.getText().toString()),med.getText().toString());
-                if (ver==true)
-                    Log.e("Pet","S-a inserat numa bine");
-                else
-                    Log.e("Pet","nuuuuuuu");
-                startActivity(new Intent(Register2Activity.this, MainApp.class));
+               // if(radiogroupID==cat.getId()) {
+                    boolean ver = myDb.insertDataPet(FirebaseAuth.getInstance().getCurrentUser().getUid(), name.getText().toString(), breed.getText().toString(), "cat"
+                            , Integer.parseInt(age.getText().toString()),
+                            Integer.parseInt(weight.getText().toString()), med.getText().toString());
+                    if (ver == true)
+                        Log.e("Pet", "S-a inserat numa bine");
+                    else
+                        Log.e("Pet", "nuuuuuuu");
+                //}
+                /*if(radiogroupID==dog.getId()) {
+                    boolean ver = myDb.insertDataPet(FirebaseAuth.getInstance().getCurrentUser().getUid(), name.getText().toString(), breed.getText().toString(), "dog"
+                            , Integer.parseInt(age.getText().toString()),
+                            Integer.parseInt(weight.getText().toString()), med.getText().toString());
+                    if (ver == true)
+                        Log.e("Pet", "S-a inserat numa bine");
+                    else
+                        Log.e("Pet", "nuuuuuuu");
+
+                }
+*/                startActivity(new Intent(Register2Activity.this, SplashScreen.class));
             }
 
         });

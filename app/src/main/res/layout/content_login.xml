@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorLavender"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".LoginActivity"
     tools:showIn="@layout/activity_login">
@@ -31,7 +31,7 @@
             android:lineSpacingExtra="30sp"
             android:text="W e l c o m e "
             android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="monospace" />
@@ -76,10 +76,10 @@
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:fontFamily="casual"
             android:text="LOGIN"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:typeface="monospace" />
 
@@ -90,7 +90,7 @@
             android:background="?android:attr/listDivider"
             android:visibility="invisible" />
 
-       <!-- <Button
+        <!-- <Button
             android:id="@+id/googleBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:text="Don`t have an account? "
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
             <Button
