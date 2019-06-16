@@ -39,7 +39,7 @@ private Button done;
         med=(EditText)findViewById(R.id.medsR2);
         weight=(EditText)findViewById(R.id.petWeightR2);
         username=(TextView)findViewById(R.id.userView);
-        username.setText(myDb.getUsername(FirebaseAuth.getInstance().getCurrentUser().getUid()).toString());
+        username.setText(myDb.getUsername(FirebaseAuth.getInstance().getCurrentUser().getUid()));
         Log.e("Register 2","Am ajuns aici la register 2");
         final RadioButton cat = (RadioButton) findViewById(R.id.catBtn);
        final RadioButton dog = (RadioButton) findViewById(R.id.dogBtn);
@@ -48,7 +48,13 @@ private Button done;
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // if(radiogroupID==cat.getId()) {
+                String breedT = breed.getText().toString();
+                String ageT = age.getText().toString();
+                String nameT = name.getText().toString();
+                String weightT = weight.getText().toString();
+                String medT = med.getText().toString();
+
+                if (!TextUtils.isEmpty(breedT) && !TextUtils.isEmpty(ageT) && !TextUtils.isEmpty(nameT) && !TextUtils.isEmpty(weightT) && !TextUtils.isEmpty(medT)) { // if(radiogroupID==cat.getId()) {
                     boolean ver = myDb.insertDataPet(FirebaseAuth.getInstance().getCurrentUser().getUid(), name.getText().toString(), breed.getText().toString(), "cat"
                             , Integer.parseInt(age.getText().toString()),
                             Integer.parseInt(weight.getText().toString()), med.getText().toString());
@@ -56,7 +62,7 @@ private Button done;
                         Log.e("Pet", "S-a inserat numa bine");
                     else
                         Log.e("Pet", "nuuuuuuu");
-                //}
+                    //}
                 /*if(radiogroupID==dog.getId()) {
                     boolean ver = myDb.insertDataPet(FirebaseAuth.getInstance().getCurrentUser().getUid(), name.getText().toString(), breed.getText().toString(), "dog"
                             , Integer.parseInt(age.getText().toString()),
@@ -67,7 +73,9 @@ private Button done;
                         Log.e("Pet", "nuuuuuuu");
 
                 }
-*/                startActivity(new Intent(Register2Activity.this, SplashScreen.class));
+*/
+                    startActivity(new Intent(Register2Activity.this, SplashScreen.class));
+                }
             }
 
         });

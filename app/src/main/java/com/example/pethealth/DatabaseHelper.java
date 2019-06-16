@@ -33,6 +33,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final  String COL_AGE_PET="age";
     public static final  String COL_WEIGHT_PET="weight";
     public static final  String COL_MED_PET="med";
+
+    //MEDICAL PLAN TASK TABLE
+    public static final String TABLE_TODO="ToDo";
+    public static final String COL_ID_TASK="idT";
+    public static final String COL_ID_USER_TASK="idU";
+    public static final String COL_TASK_TITLE="titleTask";
 //public Cursor data;
 
     public DatabaseHelper( Context context) {
@@ -53,6 +59,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "  text primary key ,"+ COL_USER +" varchar)");
         db.execSQL("CREATE TABLE Pet (id_user text,name text, breed text,type text,age numeric,weight numeric,med text,FOREIGN KEY (id_user) REFERENCES User(id_user))");
         db.execSQL("CREATE TABLE Pet_Monitor (id text,goals numeric, steps numeric,calories numeric ,date numeric,month numeric,FOREIGN KEY (id) REFERENCES User(id_user))");
+        //db.execSQL("CREATE TABLE ToDo (idT integer primary key autoincrement ,titleTask text  )");
+        db.execSQL("CREATE TABLE "
+                + TABLE_TODO + "(" + COL_ID_TASK
+                + "  integer primary key ,"+ COL_TASK_TITLE +" text)");
 
     }
 
@@ -61,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists "+TABLE_NAME);
         db.execSQL("drop table if exists "+TABLE_NAME_PET);
         db.execSQL("drop table if exists "+TABLE_NAME_PMONITOR);
+        db.execSQL("drop table if exists "+TABLE_TODO);
 
 
         onCreate(db);

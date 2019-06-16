@@ -1,11 +1,13 @@
 package com.example.pethealth;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
-
+private SharedPreferences settings;
+private SharedPreferences.Editor mEditor;
      Sensor accelerometer,count;
      Context context;
      TextView stepC;
@@ -38,6 +41,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         sensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         stepC=(TextView)view.findViewById(R.id.Steps);
+        settings= PreferenceManager.getDefaultSharedPreferences(getContext());
+        mEditor=settings.edit();
         //sensorManager.registerListener( HomeFragment.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
       //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         //if(count!=null)
@@ -73,6 +78,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
+
         if(f==0)
         {
             f=event.values[0];
@@ -82,8 +88,12 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         step=Float.toString((event.values[0]-f)*2);
         add=(int)((event.values[0]-f)*2);
         Log.e("Sensor","Steps:"+step);
-        stepC.setText(step);
+       //stepC.setText(step);
+        mEditor.putString("key",step);
+        mEditor.commit();
+        String stepP=settings.getString("key","0");
 
+      stepC.setText(stepP);
       boolean vedem=myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(),add,6,6);
       if(vedem==true)
       Log.e("Update","true");
