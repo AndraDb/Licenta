@@ -2,6 +2,7 @@ package com.example.pethealth;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +32,7 @@ public class MainApp extends AppCompatActivity
     private SectionPagerAdapter mSectionPagerAdaper;
     private ViewPager mViewPager;
     private TextView username;
+    private DatabaseHelper myDb;
 
 
     @Override
@@ -40,6 +42,7 @@ public class MainApp extends AppCompatActivity
         setFragment(new HomeFragment());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        myDb=new DatabaseHelper(this);
         mAuth = FirebaseAuth.getInstance();
        // FirebaseUser currentUser=FirebaseAuth.getInstance().getCurrentUser();
        // Toast.makeText(this,""+currentUser.getUid(),Toast.LENGTH_LONG).show();
@@ -114,8 +117,8 @@ Log.e("Mainapp","Suntem in on NaivigationItemSelected");
         if (id == R.id.nav_account) {
          getSupportFragmentManager().beginTransaction().replace(R.id.progress,
                new MyAccountFragment()).commit();//modify progressbar visibility to gone or make it a fragment on its own
-            Toast.makeText(MainApp.this,
-                    "Merge butonul ", Toast.LENGTH_LONG).show();
+           // Toast.makeText(MainApp.this,
+                   // "Merge butonul ", Toast.LENGTH_LONG).show();
         Log.e("MainApp","ajunge si aici");
        // setProgressBarVisibility(false);
 

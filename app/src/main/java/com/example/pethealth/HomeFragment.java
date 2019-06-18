@@ -16,14 +16,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Calendar;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
 private SharedPreferences settings;
 private SharedPreferences.Editor mEditor;
+private int day , month;
+private Calendar now;
+private ProgressBar pb;
      Sensor accelerometer,count;
      Context context;
      TextView stepC;
@@ -43,10 +49,15 @@ private SharedPreferences.Editor mEditor;
         stepC=(TextView)view.findViewById(R.id.Steps);
         settings= PreferenceManager.getDefaultSharedPreferences(getContext());
         mEditor=settings.edit();
+        pb=(ProgressBar)view.findViewById(R.id.progressBar2);
         //sensorManager.registerListener( HomeFragment.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
       //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         //if(count!=null)
           //  sensorManager.registerListener( HomeFragment.this,count,SensorManager.SENSOR_DELAY_UI);
+        now= Calendar.getInstance();
+        month=now.MONTH;
+        day=now.DAY_OF_MONTH;
+        myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(),0,0,0,day,month);
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
                 != null)
         {
@@ -92,13 +103,21 @@ private SharedPreferences.Editor mEditor;
         mEditor.putString("key",step);
         mEditor.commit();
         String stepP=settings.getString("key","0");
-
-      stepC.setText(stepP);
-      boolean vedem=myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(),add,6,6);
+         String add2=Integer.toString(add);
+      stepC.setText(add2);
+      boolean vedem=myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(),add,day,month);
       if(vedem==true)
       Log.e("Update","true");
       else
           Log.e("Update","true");
+      if(now.HOUR_OF_DAY<=24)
+      {
+          stepC.setText(add2);
+      }
+      else
+      {
+         stepC.setText("0");
+      }
 
     }
 

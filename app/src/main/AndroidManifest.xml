@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".DisplayStats"></activity>
+        <activity android:name=".SplashScreen" />
         <activity
             android:name=".MainApp"
             android:label="PetHealth"

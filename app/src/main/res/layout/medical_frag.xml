@@ -17,21 +17,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/AddBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:fontFamily="casual"
-                android:text="Add Task"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                android:typeface="monospace" />
-
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="417dp"
-                android:layout_height="140dp"
+                android:layout_height="118dp"
                 app:srcCompat="@drawable/medical" />
 
             <TextView
@@ -43,6 +32,17 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorDarkPurple"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/AddBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:fontFamily="casual"
+                android:text="Add Task"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:typeface="monospace" />
 
             <ListView
                 android:id="@+id/list_todo"

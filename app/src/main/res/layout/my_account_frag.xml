@@ -36,7 +36,7 @@
             <View
                 android:id="@+id/divider14"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="10dp"
                 android:background="?android:attr/listDivider"
                 android:visibility="invisible" />
 
@@ -44,14 +44,18 @@
                 android:id="@+id/usernameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="casual"
                 android:text="My Account"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:visibility="visible" />
 
             <View
                 android:id="@+id/divider15"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="10dp"
                 android:background="?android:attr/listDivider"
                 android:visibility="invisible" />
 
@@ -63,7 +67,10 @@
                     android:id="@+id/PetType"
                     android:layout_width="99dp"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet is a :" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet is a :"
+                    android:textColor="@color/colorDarkPurple"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/petType"
@@ -71,8 +78,12 @@
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:inputType="textPersonName"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -91,7 +102,9 @@
                     android:id="@+id/PetBreed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet Breed is :" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet Breed is :"
+                    android:textColor="@color/colorDarkPurple" />
 
                 <EditText
                     android:id="@+id/petBreed"
@@ -99,8 +112,12 @@
                     android:layout_width="281dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:inputType="textPersonName"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
             </TableRow>
 
             <View
@@ -118,7 +135,9 @@
                     android:id="@+id/PetBday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet Age is:" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet Age is:"
+                    android:textColor="@color/colorDarkPurple" />
 
                 <EditText
                     android:id="@+id/petAge"
@@ -126,8 +145,12 @@
                     android:layout_width="296dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:inputType="textPersonName"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -146,7 +169,9 @@
                     android:id="@+id/PetName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet Name is:" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet Name is:"
+                    android:textColor="@color/colorDarkPurple" />
 
                 <EditText
                     android:id="@+id/petName"
@@ -154,8 +179,12 @@
                     android:layout_width="281dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:inputType="textPersonName"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
             </TableRow>
 
             <View
@@ -173,14 +202,20 @@
                     android:id="@+id/MedIssues"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet Medical Issues:" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet Medical Issues:"
+                    android:textColor="@color/colorDarkPurple" />
 
                 <EditText
                     android:id="@+id/petMed"
                     android:layout_width="241dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textMultiLine" />
+                    android:fontFamily="casual"
+                    android:inputType="textMultiLine"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
             </TableRow>
 
             <View
@@ -198,14 +233,20 @@
                     android:id="@+id/medIssues"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Pet Weight is:" />
+                    android:fontFamily="casual"
+                    android:text="Your Pet Weight is:"
+                    android:textColor="@color/colorDarkPurple" />
 
                 <EditText
                     android:id="@+id/petWeight"
                     android:layout_width="275dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:fontFamily="casual"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
             </TableRow>
 
             <View
@@ -219,10 +260,10 @@
                 android:id="@+id/ModifyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorAccent"
                 android:fontFamily="casual"
                 android:text="Modify"
-                android:textColor="@color/colorLavender"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
         </LinearLayout>

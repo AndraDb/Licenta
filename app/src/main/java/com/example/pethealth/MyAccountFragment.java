@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -45,13 +46,17 @@ public class MyAccountFragment extends Fragment {
        modify.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               boolean ver= db.updatePetData(FirebaseAuth.getInstance().getCurrentUser().getUid(),type.getText().toString(), breed.getText().toString(), name.getText().toString()
+               boolean ver= db.updatePetData(FirebaseAuth.getInstance().getCurrentUser().getUid(),name.getText().toString(), breed.getText().toString(), type.getText().toString()
                        , Integer.parseInt(age.getText().toString()),
                        Integer.parseInt(weight.getText().toString()),med.getText().toString());
-               if (ver==true)
-                   Log.e("MyAccount","S-a modificat numa bine");
-               else
-                   Log.e("MyAccount","nuuuuuuu");
+               if (ver==true) {
+                   Log.e("MyAccount", "S-a modificat numa bine");
+                   Toast.makeText(getContext(), "UPDATE DONE WITH GREAT SUCCES!", Toast.LENGTH_SHORT);
+               }
+               else {
+                   Log.e("MyAccount", "nuuuuuuu");
+                   Toast.makeText(getContext(), "OPSIE!TRY AGAIN ", Toast.LENGTH_SHORT);
+               }
            }
        });
 

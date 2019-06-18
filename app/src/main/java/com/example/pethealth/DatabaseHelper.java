@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 
 import java.util.Date;
 
@@ -370,5 +371,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         else
             return true;
+    }
+    public boolean updateGoals(String id , int goals , int date ,int month)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_GOALS,goals);
+
+
+
+        long result = db.update(TABLE_NAME_PMONITOR,contentValues," id = ? and date = ? and month = ?",new String []{id,Integer.toString(date),Integer.toString(month)});
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+    public Cursor getStats(String id, int  month)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("Select * from Pet_Monitor where id=? and month=?",new String[]{id, Integer.toString(month)});
+        return cursor;
     }
 }

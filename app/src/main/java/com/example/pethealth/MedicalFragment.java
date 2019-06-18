@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class MedicalFragment extends Fragment {
     private DatabaseHelper myDb;
     private ArrayAdapter<String>mAdapter;
     private Button delete;
+    private ArrayList<String> taskList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,13 +37,16 @@ public class MedicalFragment extends Fragment {
 
        View view=inflater.inflate(R.layout.medical_frag, container, false);
        add_task=view.findViewById(R.id.AddBtn);
-       delete=view.findViewById(R.id.task_delete);
+      // delete=view.findViewById(R.id.task_delete);
 
+        taskList = new ArrayList<>();
       // final EditText taskEditText=new EditText(getContext());
         myDb=new DatabaseHelper(getContext());
         mTaskList=view.findViewById(R.id.list_todo);
+        View parent =(View) view.getParent();
+        updateUI();
+        setupListViewListener();
 
-     updateUI();
 
        add_task.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -63,23 +68,24 @@ public class MedicalFragment extends Fragment {
                                        values,
                                        SQLiteDatabase.CONFLICT_REPLACE);
                                db.close();
-                              // updateUI();
+                               updateUI();
                            }
                        })
                        .setNegativeButton("Cancel", null)
                        .create();
                dialog.show();
 
-               updateUI();
+              // updateUI();
            }
 
        });
 
+
        return view;
     }
 
-        private void updateUI() {
-        ArrayList<String> taskList = new ArrayList<>();
+        public  void updateUI() {
+
             SQLiteDatabase db = myDb.getReadableDatabase();
             Cursor cursor = db.query(myDb.TABLE_TODO,
                     new String[]{myDb.COL_ID_TASK,myDb.COL_TASK_TITLE},
@@ -107,9 +113,10 @@ public class MedicalFragment extends Fragment {
         cursor.close();
         db.close();
     }
-    public void deleteTask(View v)
+    public void deleteTask(View view)
     {
-        View parent =(View) v.getParent();
+
+        View parent =(View) view.getParent();
         TextView taskTextView=parent.findViewById(R.id.task_title);
         String task=String.valueOf(taskTextView.getText());
         SQLiteDatabase db=myDb.getWritableDatabase();
@@ -120,5 +127,36 @@ public class MedicalFragment extends Fragment {
         updateUI();
     }
 
+    private void setupListViewListener() {
+        mTaskList.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapter,
+                                                   View item, int pos, long id) {
+                        // Remove the item within array at position
 
+                        // Return true consumes the long click event (marks it handled)
+                        View parent =(View) item.getParent();
+                        TextView taskTextView=parent.findViewById(R.id.task_title);
+                       final  String task=String.valueOf(taskTextView.getText());
+                        AlertDialog.Builder adb=new AlertDialog.Builder(getContext());
+                        adb.setTitle("Done?");
+                        adb.setMessage(" " + task);
+                        final int positionToRemove = pos;
+                        adb.setNegativeButton("Cancel", null);
+                        adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                SQLiteDatabase db=myDb.getWritableDatabase();
+                                db.delete(myDb.TABLE_TODO,
+                                        myDb.COL_TASK_TITLE+" = ?",
+                                        new String []{task});
+                            }});
+                        adb.show();
+                       // updateUI();
+                        return true;
+                    }
+
+                });
+    }
 }
