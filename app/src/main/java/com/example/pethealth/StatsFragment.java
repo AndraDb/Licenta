@@ -36,10 +36,10 @@ public class StatsFragment extends Fragment {
 
     private TableLayout tableLayout;
     DatabaseHelper myDb;
-    private ListView mStatsList,DayList;
+    private ListView mStatsList,DayList,CalList;
 private Button month;
 private String mm;
-    private ArrayAdapter<String> mAdapter,dAdapter;
+    private ArrayAdapter<String> mAdapter,dAdapter,cAdapter;
     //Cursor c=myDb.data;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ private String mm;
         View view=inflater.inflate(R.layout.statistics_frag, container, false);
         mStatsList=view.findViewById(R.id.listStats);
         DayList=view.findViewById(R.id.listDay);
+        CalList=view.findViewById(R.id.listCal);
 
 
 
@@ -129,6 +130,7 @@ private String mm;
     private void updateUI(String m) {
         ArrayList<String> statsList = new ArrayList<>();
         ArrayList<String>ST=new ArrayList<>();
+        ArrayList<String>CT=new ArrayList<>();
         SQLiteDatabase db = myDb.getReadableDatabase();
        // ListAdapter listAdapter=new ArrayList<String>()
         mAdapter = new ArrayAdapter<>(getContext(),
@@ -140,6 +142,10 @@ private String mm;
                 R.layout.item_stats_d,
                 R.id.day,
                 ST);
+        cAdapter=new ArrayAdapter<>(getContext(),
+                R.layout.item_stats_c,
+                R.id.cal,
+                CT);
         Cursor cursor = myDb.getStats(FirebaseAuth.getInstance().getCurrentUser().getUid(),Integer.parseInt(m));/*db.query(myDb.TABLE_NAME_PMONITOR,
 
                 new String[]{myDb.COL_STEPS,myDb.COL_DATE},
@@ -154,8 +160,10 @@ private String mm;
                 //  Log.e("Stats_Select", "Task: " + cursor.getString(idx));
                 statsList.add(cursor.getString(2));
                 ST.add(cursor.getString(4));
+                CT.add(cursor.getString(3));
                 DayList.setAdapter(dAdapter);
                 mStatsList.setAdapter(mAdapter);
+                CalList.setAdapter(cAdapter);
             }
 
 

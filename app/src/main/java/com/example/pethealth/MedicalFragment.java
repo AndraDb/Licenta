@@ -54,7 +54,7 @@ public class MedicalFragment extends Fragment {
                final EditText taskEditText = new EditText(getContext());
                AlertDialog dialog = new AlertDialog.Builder(getContext())
                        .setTitle("Add a new plan")
-                       .setMessage("Wat do you have to do ?")
+                       .setMessage("What do you have to do ?")
                        .setView(taskEditText)
                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                            @Override

@@ -74,11 +74,22 @@
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:layout_width="18dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="casual"
                     android:text="DAY"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ceva"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="casual"
+                    android:text="CALORIES"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
@@ -91,15 +102,24 @@
 
                 <ListView
                     android:id="@+id/listStats"
-                    android:layout_width="212dp"
+                    android:layout_width="120dp"
                     android:layout_height="462dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="253dp" />
 
                 <ListView
                     android:id="@+id/listDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_width="120dp"
+                    android:layout_height="462dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="253dp"/>
+
+                <ListView
+                    android:id="@+id/listCal"
+                    android:layout_width="120dp"
+                    android:layout_height="462dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="253dp"/>
             </LinearLayout>
 
         </LinearLayout>
