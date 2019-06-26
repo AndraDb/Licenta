@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class GoalsFragment extends Fragment {
     private EditText goals;
@@ -29,7 +30,7 @@ public class GoalsFragment extends Fragment {
         sub=view.findViewById(R.id.Submit);
         goals = view.findViewById(R.id.goalF);
         goals.setText("0");
-        now = Calendar.getInstance();
+        now = Calendar.getInstance(TimeZone.getDefault());
         myDb = new DatabaseHelper(getContext());
 
 sub.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +39,8 @@ sub.setOnClickListener(new View.OnClickListener() {
         String goal = goals.getText().toString();
         if (goal != "0") {
             int f = Integer.parseInt(goal);
-            myDb.updateGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(), f, now.DAY_OF_MONTH, now.MONTH);
+            myDb.updateGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(), f, now.DAY_OF_MONTH, now.MONTH+1);
+
         }
     }
 });

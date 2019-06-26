@@ -125,11 +125,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-    public String getGoals( String id ) {
+    public String getGoals(String id,int month, int date ) {
         SQLiteDatabase db = this.getWritableDatabase();
         // String query=new String("SELECT username FROM User WHERE id_user=?");
         String[] column={COL_ID_M,COL_GOALS};
-        Cursor res = db.query(TABLE_NAME_PMONITOR,column,COL_ID_M+"='"+id+"'",null,null,null,null);
+        Cursor res = db.rawQuery("Select * from Pet_Monitor where id=? and month=? and date=?",new String[]{id, Integer.toString(month),Integer.toString(date)});
         StringBuffer buffer=new StringBuffer();
         while(res.moveToNext())
         {

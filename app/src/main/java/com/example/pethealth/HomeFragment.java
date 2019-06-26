@@ -19,9 +19,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
@@ -37,12 +39,14 @@ private ProgressBar pb;
      boolean isSensorPresent;
      DatabaseHelper myDb;
     private float f;
+    int g;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
        context=getContext();
        myDb=new DatabaseHelper(getContext());
+       now=Calendar.getInstance(TimeZone.getDefault());
         View view= inflater.inflate(R.layout.home_frag, container, false);
         sensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -54,10 +58,16 @@ private ProgressBar pb;
       //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         //if(count!=null)
           //  sensorManager.registerListener( HomeFragment.this,count,SensorManager.SENSOR_DELAY_UI);
+
+
         now= Calendar.getInstance();
-        month=now.MONTH;
-        day=now.DAY_OF_MONTH;
-        myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(),0,0,0,day,month);
+        month=now.get(now.MONTH)+1;
+        day=now.get(now.DAY_OF_MONTH);
+        Log.e("Zi","ziua :"+day +"luna"+month);
+        g=Integer.parseInt(myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month,day));
+        pb.setMax(g);
+Log.e("Zi","Goals :  "+ g);
+
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
                 != null)
         {
@@ -105,11 +115,19 @@ private ProgressBar pb;
         String stepP=settings.getString("key","0");
          String add2=Integer.toString(add);
       stepC.setText(add2);
-      boolean vedem=myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(),add,day,month);
-      if(vedem==true)
-      Log.e("Update","true");
-      else
-          Log.e("Update","true");
+      pb.setProgress(add);
+        if(myDb.getDate(FirebaseAuth.getInstance().getCurrentUser().getUid())==null) {
+            myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 0, 0, day, month);
+            Log.e("Zi","S-o inserat");
+        }
+        else {
+            boolean vedem = myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(), add, day, month);
+            Log.e("Zi","Numa isi da update");
+            if (vedem == true)
+                Log.e("Update", "true");
+            else
+                Log.e("Update", "true");
+        }
       if(now.HOUR_OF_DAY<=24)
       {
           stepC.setText(add2);
