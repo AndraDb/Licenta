@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final  String COL_MED_PET="med";
 
     //MEDICAL PLAN TASK TABLE
-    public static final String TABLE_TODO="ToDo";
+    public static final String TABLE_TODO="ToDO";
     public static final String COL_ID_TASK="idT";
     public static final String COL_ID_USER_TASK="idU";
     public static final String COL_TASK_TITLE="titleTask";
@@ -61,9 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Pet (id_user text,name text, breed text,type text,age numeric,weight numeric,med text,FOREIGN KEY (id_user) REFERENCES User(id_user))");
         db.execSQL("CREATE TABLE Pet_Monitor (id text,goals numeric, steps numeric,calories numeric ,date numeric,month numeric,FOREIGN KEY (id) REFERENCES User(id_user))");
         //db.execSQL("CREATE TABLE ToDo (idT integer primary key autoincrement ,titleTask text  )");
-        db.execSQL("CREATE TABLE "
+      /*  db.execSQL("CREATE TABLE "
                 + TABLE_TODO + "(" + COL_ID_TASK
-                + "  integer primary key ,"+ COL_TASK_TITLE +" text)");
+                + "  integer primary key ,"+ COL_TASK_TITLE +" text  ,"+ COL_ID_USER_TASK + " FOREIGN KEY(idU) REFERENCES User(id_user))");*/
+        db.execSQL("CREATE TABLE ToDO (idT integer primary key , idU text, titleTask text,FOREIGN KEY (idU) REFERENCES User(id_user))");
 
     }
 
@@ -386,10 +387,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+    public boolean updateCal(String id , int calories , int date ,int month)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_CAL,calories);
+
+
+
+        long result = db.update(TABLE_NAME_PMONITOR,contentValues," id = ? and date = ? and month = ?",new String []{id,Integer.toString(date),Integer.toString(month)});
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
     public Cursor getStats(String id, int  month)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery("Select * from Pet_Monitor where id=? and month=?",new String[]{id, Integer.toString(month)});
+        return cursor;
+    }
+    public Cursor getTask(String id)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("Select * from ToDO where idU=? ",new String[]{id});
         return cursor;
     }
 }

@@ -27,26 +27,26 @@ import java.util.TimeZone;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
-private SharedPreferences settings;
-private SharedPreferences.Editor mEditor;
-private int day , month;
-private Calendar now;
-private ProgressBar pb;
-     Sensor accelerometer,count;
-     Context context;
-     TextView stepC;
-     double stepDetector,stepCounter,counterSteps;
-     boolean isSensorPresent;
-     DatabaseHelper myDb;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor mEditor;
+    private int day , month;
+    private Calendar now;
+    private ProgressBar pb;
+    Sensor accelerometer,count;
+    Context context;
+    TextView stepC;
+    double stepDetector,stepCounter,counterSteps;
+    boolean isSensorPresent;
+    DatabaseHelper myDb;
     private float f;
     int g;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-       context=getContext();
-       myDb=new DatabaseHelper(getContext());
-       now=Calendar.getInstance(TimeZone.getDefault());
+        context=getContext();
+        myDb=new DatabaseHelper(getContext());
+        now=Calendar.getInstance(TimeZone.getDefault());
         View view= inflater.inflate(R.layout.home_frag, container, false);
         sensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -55,9 +55,9 @@ private ProgressBar pb;
         mEditor=settings.edit();
         pb=(ProgressBar)view.findViewById(R.id.progressBar2);
         //sensorManager.registerListener( HomeFragment.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
-      //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         //if(count!=null)
-          //  sensorManager.registerListener( HomeFragment.this,count,SensorManager.SENSOR_DELAY_UI);
+        //  sensorManager.registerListener( HomeFragment.this,count,SensorManager.SENSOR_DELAY_UI);
 
 
         now= Calendar.getInstance();
@@ -66,7 +66,7 @@ private ProgressBar pb;
         Log.e("Zi","ziua :"+day +"luna"+month);
         g=Integer.parseInt(myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month,day));
         pb.setMax(g);
-Log.e("Zi","Goals :  "+ g);
+        Log.e("Zi","Goals :  "+ g);
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
                 != null)
@@ -82,19 +82,19 @@ Log.e("Zi","Goals :  "+ g);
 
         return view;
     }
-   public void onResume() {
+    public void onResume() {
         super.onResume();
 
-            sensorManager.registerListener(this, count,
-                    SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, count,
+                SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
     @Override
-   public void onPause() {
+    public void onPause() {
         super.onPause();
 
-            sensorManager.unregisterListener(this);
+        sensorManager.unregisterListener(this);
 
     }
     @Override
@@ -109,13 +109,13 @@ Log.e("Zi","Goals :  "+ g);
         step=Float.toString((event.values[0]-f)*2);
         add=(int)((event.values[0]-f)*2);
         Log.e("Sensor","Steps:"+step);
-       //stepC.setText(step);
+        //stepC.setText(step);
         mEditor.putString("key",step);
         mEditor.commit();
         String stepP=settings.getString("key","0");
-         String add2=Integer.toString(add);
-      stepC.setText(add2);
-      pb.setProgress(add);
+        String add2=Integer.toString(add);
+        stepC.setText(add2);
+        pb.setProgress(add);
         if(myDb.getDate(FirebaseAuth.getInstance().getCurrentUser().getUid())==null) {
             myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 0, 0, day, month);
             Log.e("Zi","S-o inserat");
@@ -128,14 +128,14 @@ Log.e("Zi","Goals :  "+ g);
             else
                 Log.e("Update", "true");
         }
-      if(now.HOUR_OF_DAY<=24)
-      {
-          stepC.setText(add2);
-      }
-      else
-      {
-         stepC.setText("0");
-      }
+        if(now.HOUR_OF_DAY<=24)
+        {
+            stepC.setText(add2);
+        }
+        else
+        {
+            stepC.setText("0");
+        }
 
     }
 

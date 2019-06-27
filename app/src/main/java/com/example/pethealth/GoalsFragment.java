@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,11 @@ sub.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         String goal = goals.getText().toString();
-        if (goal != "0") {
+        if (!goal.equals("0")){
             int f = Integer.parseInt(goal);
             myDb.updateGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(), f, now.DAY_OF_MONTH, now.MONTH+1);
+            Log.e("Zi","Goals update :  "+ f +"Get Goals:  "+ myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),now.MONTH+1, now.DAY_OF_MONTH));
+
 
         }
     }

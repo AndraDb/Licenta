@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 import static java.lang.Integer.parseInt;
 
 public class CaloriesFragment extends Fragment {
@@ -23,6 +25,10 @@ public class CaloriesFragment extends Fragment {
     EditText intake;
     DatabaseHelper myDb;
     Button sub;
+    int f=0;
+    int month,day;
+    Calendar now;
+    String display;
    // @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,19 +46,37 @@ public class CaloriesFragment extends Fragment {
         double c=0;
         double p=0;
         int calories=0;
+        String type=myDb.getPetType(FirebaseAuth.getInstance().getCurrentUser().getUid());
         calories=Integer.parseInt(myDb.getPetWeight(FirebaseAuth.getInstance().getCurrentUser().getUid()));
         p=0.75;
         c=Math.pow(calories,p)*70;
         Log.e("Calcul",myDb.getPetWeight(FirebaseAuth.getInstance().getCurrentUser().getUid()));
-       final int f=(int)c;
+        Log.e("animal","Cal: "+ f + " Type" + type);
+       if(type.equals("Cat"))
+       {
+           f=(int)(c*1.4);
+           Log.e("animal","Cal: "+ f + " Type" + type);
+           display=String.valueOf(f);
+       }
+       else
+           if(type.equals("Dog")) {
+               f = (int) (c * 2.0);
+               Log.e("animal","Cal: "+ f + " Type" + type);
+               display=String.valueOf(f);
+           }
+
         war.setText("Let`s see how are you doing");
-        String display=String.valueOf(f);
+
         calc.setText(display);
         sub.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 String today1=intake.getText().toString();
                  int today=Integer.parseInt(today1);
+                now= Calendar.getInstance();
+                month=now.get(now.MONTH)+1;
+                day=now.get(now.DAY_OF_MONTH);
+                 myDb.updateCal(FirebaseAuth.getInstance().getCurrentUser().getUid(),today,day,month);
                 if(today>f)
                     war.setText("WARNING!Too many calories today , try to cut off a bit");
                 else

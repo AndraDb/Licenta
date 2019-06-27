@@ -18,8 +18,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class MedicalFragment extends Fragment {
     private DatabaseHelper myDb;
     private ArrayAdapter<String>mAdapter;
     private Button delete;
+    private ImageButton refresh;
     private ArrayList<String> taskList;
     @Nullable
     @Override
@@ -38,13 +42,13 @@ public class MedicalFragment extends Fragment {
        View view=inflater.inflate(R.layout.medical_frag, container, false);
        add_task=view.findViewById(R.id.AddBtn);
       // delete=view.findViewById(R.id.task_delete);
-
+        refresh=view.findViewById(R.id.refreshBtn);
         taskList = new ArrayList<>();
       // final EditText taskEditText=new EditText(getContext());
         myDb=new DatabaseHelper(getContext());
         mTaskList=view.findViewById(R.id.list_todo);
         View parent =(View) view.getParent();
-        updateUI();
+       // updateUI();
         setupListViewListener();
 
 
@@ -63,23 +67,29 @@ public class MedicalFragment extends Fragment {
                                SQLiteDatabase db = myDb.getWritableDatabase();
                                ContentValues values = new ContentValues();
                                values.put(myDb.COL_TASK_TITLE, task);
+                               values.put(myDb.COL_ID_USER_TASK,FirebaseAuth.getInstance().getCurrentUser().getUid());
                                db.insertWithOnConflict(myDb.TABLE_TODO,
                                        null,
                                        values,
                                        SQLiteDatabase.CONFLICT_REPLACE);
                                db.close();
-                               updateUI();
+                              // updateUI();
                            }
                        })
                        .setNegativeButton("Cancel", null)
                        .create();
                dialog.show();
 
-              // updateUI();
+              updateUI();
            }
 
        });
-
+   refresh.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           updateUI();
+       }
+   });
 
        return view;
     }
@@ -87,9 +97,7 @@ public class MedicalFragment extends Fragment {
         public  void updateUI() {
 
             SQLiteDatabase db = myDb.getReadableDatabase();
-            Cursor cursor = db.query(myDb.TABLE_TODO,
-                    new String[]{myDb.COL_ID_TASK,myDb.COL_TASK_TITLE},
-                    null, null, null, null, null);
+            Cursor cursor = myDb.getTask(FirebaseAuth.getInstance().getCurrentUser().getUid());
             while(cursor.moveToNext()) {
                 int idx = cursor.getColumnIndex(myDb.COL_TASK_TITLE);
                 Log.e("Task_Select", "Task: " + cursor.getString(idx));
@@ -124,7 +132,7 @@ public class MedicalFragment extends Fragment {
                 myDb.COL_TASK_TITLE+" = ?",
                 new String []{task});
         db.close();
-        updateUI();
+       //updateUI();
     }
 
     private void setupListViewListener() {
@@ -149,11 +157,11 @@ public class MedicalFragment extends Fragment {
 
                                 SQLiteDatabase db=myDb.getWritableDatabase();
                                 db.delete(myDb.TABLE_TODO,
-                                        myDb.COL_TASK_TITLE+" = ?",
+                                        myDb.COL_TASK_TITLE+" = ?" ,
                                         new String []{task});
                             }});
                         adb.show();
-                       // updateUI();
+                      // updateUI();
                         return true;
                     }
 

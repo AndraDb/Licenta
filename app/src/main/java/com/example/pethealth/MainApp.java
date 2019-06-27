@@ -26,6 +26,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Calendar;
+
 public class MainApp extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
@@ -33,6 +35,8 @@ public class MainApp extends AppCompatActivity
     private ViewPager mViewPager;
     private TextView username;
     private DatabaseHelper myDb;
+    private Calendar now;
+    private int month,day;
 
 
     @Override
@@ -50,6 +54,10 @@ public class MainApp extends AppCompatActivity
         ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar2);
       mSectionPagerAdaper=new SectionPagerAdapter(getSupportFragmentManager());
       mViewPager= (ViewPager)findViewById(R.id.container);
+        //now= Calendar.getInstance();
+       // month=now.get(now.MONTH)+1;
+       // day=now.get(now.DAY_OF_MONTH);
+        //myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 0, 0, day, month);
      // setupViewPager(mViewPager);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
