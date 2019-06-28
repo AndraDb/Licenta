@@ -76,6 +76,7 @@ public class Register1Activity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful())
                                 {   boolean inserted=db.insertDataUser(FirebaseAuth.getInstance().getCurrentUser().getUid(),username);
+                                     db.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(),0,0,0,0,0);
 
                                     startActivity(new Intent(Register1Activity.this,Register2Activity.class));
 

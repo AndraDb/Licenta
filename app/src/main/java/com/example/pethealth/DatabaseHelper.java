@@ -414,4 +414,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor=db.rawQuery("Select * from ToDO where idU=? ",new String[]{id});
         return cursor;
     }
+    public Cursor getDay(String id,int date)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("Select * from Pet_Monitor where id=? and date=?", new String []{id,Integer.toString(date)});
+        return cursor;
+    }
+
 }

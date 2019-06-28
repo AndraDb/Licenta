@@ -21,6 +21,7 @@ public class GoalsFragment extends Fragment {
     private EditText goals;
     private Calendar now;
     private Button sub;
+    private int day,month;
     DatabaseHelper myDb;
     @Nullable
     @Override
@@ -31,8 +32,11 @@ public class GoalsFragment extends Fragment {
         sub=view.findViewById(R.id.Submit);
         goals = view.findViewById(R.id.goalF);
         goals.setText("0");
-        now = Calendar.getInstance(TimeZone.getDefault());
+       // now = Calendar.getInstance(TimeZone.getDefault());
         myDb = new DatabaseHelper(getContext());
+        now= Calendar.getInstance();
+        month=now.get(now.MONTH)+1;
+        day=now.get(now.DAY_OF_MONTH);
 
 sub.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -40,8 +44,12 @@ sub.setOnClickListener(new View.OnClickListener() {
         String goal = goals.getText().toString();
         if (!goal.equals("0")){
             int f = Integer.parseInt(goal);
-            myDb.updateGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(), f, now.DAY_OF_MONTH, now.MONTH+1);
-            Log.e("Zi","Goals update :  "+ f +"Get Goals:  "+ myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),now.MONTH+1, now.DAY_OF_MONTH));
+           boolean test= myDb.updateGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(), f, day, month);
+           if(test==true)
+               Log.e("TestG","S-a dat update la goals");
+           else
+               Log.e("TestG","Nu s-a dat update ");
+            Log.e("Zi","Goals update :  "+ f +"Get Goals:  "+ myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month, day));
 
 
         }

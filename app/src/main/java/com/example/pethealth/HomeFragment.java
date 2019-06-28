@@ -2,6 +2,7 @@ package com.example.pethealth;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -64,9 +65,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         month=now.get(now.MONTH)+1;
         day=now.get(now.DAY_OF_MONTH);
         Log.e("Zi","ziua :"+day +"luna"+month);
-        g=Integer.parseInt(myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month,day));
-        pb.setMax(g);
-        Log.e("Zi","Goals :  "+ g);
+
+
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
                 != null)
@@ -116,13 +116,19 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         String add2=Integer.toString(add);
         stepC.setText(add2);
         pb.setProgress(add);
-        if(myDb.getDate(FirebaseAuth.getInstance().getCurrentUser().getUid())==null) {
+        Cursor cursor = myDb.getDay(FirebaseAuth.getInstance().getCurrentUser().getUid(),day);
+        if(cursor.getCount()==0)
+           {
             myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 0, 0, day, month);
-            Log.e("Zi","S-o inserat");
-        }
+            g=0;
+            pb.setMax(g);
+            Log.e("Zi","S-o inserat" +g);
+            }
         else {
             boolean vedem = myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(), add, day, month);
-            Log.e("Zi","Numa isi da update");
+            g=Integer.parseInt(myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month,day));
+            pb.setMax(g);
+            Log.e("Zi","Numa isi da update" +g);
             if (vedem == true)
                 Log.e("Update", "true");
             else
