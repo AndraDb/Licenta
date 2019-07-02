@@ -2,7 +2,9 @@ package com.example.pethealth;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -48,7 +50,7 @@ public class MedicalFragment extends Fragment {
         myDb=new DatabaseHelper(getContext());
         mTaskList=view.findViewById(R.id.list_todo);
         View parent =(View) view.getParent();
-       // updateUI();
+        updateUI();
         setupListViewListener();
 
 
@@ -73,21 +75,23 @@ public class MedicalFragment extends Fragment {
                                        values,
                                        SQLiteDatabase.CONFLICT_REPLACE);
                                db.close();
-                              // updateUI();
+                               //updateUI();
                            }
                        })
                        .setNegativeButton("Cancel", null)
                        .create();
                dialog.show();
 
-              updateUI();
+             // updateUI();
            }
 
        });
    refresh.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-           updateUI();
+
+           getFragmentManager().beginTransaction().replace(R.id.progress,new MedicalFragment()).commit();
+
        }
    });
 
@@ -103,10 +107,7 @@ public class MedicalFragment extends Fragment {
                 Log.e("Task_Select", "Task: " + cursor.getString(idx));
                 taskList.add(cursor.getString(idx));
             }
-
-
-
-        if (mAdapter == null) {
+            if (mAdapter == null) {
             mAdapter = new ArrayAdapter<>(getContext(),
                     R.layout.item_todo,
                     R.id.task_title,
@@ -121,19 +122,7 @@ public class MedicalFragment extends Fragment {
         cursor.close();
         db.close();
     }
-    public void deleteTask(View view)
-    {
 
-        View parent =(View) view.getParent();
-        TextView taskTextView=parent.findViewById(R.id.task_title);
-        String task=String.valueOf(taskTextView.getText());
-        SQLiteDatabase db=myDb.getWritableDatabase();
-        db.delete(myDb.TABLE_TODO,
-                myDb.COL_TASK_TITLE+" = ?",
-                new String []{task});
-        db.close();
-       //updateUI();
-    }
 
     private void setupListViewListener() {
         mTaskList.setOnItemLongClickListener(
@@ -144,8 +133,8 @@ public class MedicalFragment extends Fragment {
                         // Remove the item within array at position
 
                         // Return true consumes the long click event (marks it handled)
-                        View parent =(View) item.getParent();
-                        TextView taskTextView=parent.findViewById(R.id.task_title);
+                        //View parent =(View) item.getParent();
+                        TextView taskTextView=item.findViewById(R.id.task_title);
                        final  String task=String.valueOf(taskTextView.getText());
                         AlertDialog.Builder adb=new AlertDialog.Builder(getContext());
                         adb.setTitle("Done?");
@@ -157,7 +146,7 @@ public class MedicalFragment extends Fragment {
 
                                 SQLiteDatabase db=myDb.getWritableDatabase();
                                 db.delete(myDb.TABLE_TODO,
-                                        myDb.COL_TASK_TITLE+" = ?" ,
+                                        myDb.COL_TASK_TITLE+" = ? " ,
                                         new String []{task});
                             }});
                         adb.show();

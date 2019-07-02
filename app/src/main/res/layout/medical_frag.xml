@@ -21,7 +21,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="417dp"
                 android:layout_height="118dp"
-                app:srcCompat="@drawable/medical" />
+                app:srcCompat="@drawable/medp" />
 
             <TextView
                 android:id="@+id/textView12"

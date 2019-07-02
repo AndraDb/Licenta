@@ -9,7 +9,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorLavender">
+        android:background="@color/colorLavender"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="395dp"
@@ -30,8 +32,8 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
-                app:srcCompat="@drawable/account" />
+                android:layout_height="99dp"
+                app:srcCompat="@drawable/accp" />
 
             <View
                 android:id="@+id/divider14"
@@ -90,7 +92,7 @@
             <View
                 android:id="@+id/divider16"
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="10dp"
                 android:background="?android:attr/listDivider"
                 android:visibility="invisible" />
 
@@ -221,7 +223,7 @@
             <View
                 android:id="@+id/divider20"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="20dp"
                 android:background="?android:attr/listDivider"
                 android:visibility="invisible" />
 
@@ -252,19 +254,27 @@
             <View
                 android:id="@+id/divider27"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="10dp"
                 android:background="?android:attr/listDivider"
                 android:visibility="invisible" />
 
             <Button
                 android:id="@+id/ModifyBtn"
-                android:layout_width="match_parent"
+                android:layout_width="362dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
                 android:fontFamily="casual"
                 android:text="Modify"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
+
+            <View
+                android:id="@+id/divider23"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
 
         </LinearLayout>
     </ScrollView>

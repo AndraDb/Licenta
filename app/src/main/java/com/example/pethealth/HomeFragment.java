@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
     private SharedPreferences settings;
     private SharedPreferences.Editor mEditor;
+    private TextView GoalDis;
     private int day , month;
     private Calendar now;
     private ProgressBar pb;
@@ -55,6 +56,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         settings= PreferenceManager.getDefaultSharedPreferences(getContext());
         mEditor=settings.edit();
         pb=(ProgressBar)view.findViewById(R.id.progressBar2);
+        GoalDis=view.findViewById(R.id.TGoal);
+
         //sensorManager.registerListener( HomeFragment.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
         //count=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         //if(count!=null)
@@ -122,11 +125,13 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 0, 0, day, month);
             g=0;
             pb.setMax(g);
+            GoalDis.setText(String.valueOf(g));
             Log.e("Zi","S-o inserat" +g);
             }
         else {
             boolean vedem = myDb.updateSteps(FirebaseAuth.getInstance().getCurrentUser().getUid(), add, day, month);
             g=Integer.parseInt(myDb.getGoals(FirebaseAuth.getInstance().getCurrentUser().getUid(),month,day));
+            GoalDis.setText(String.valueOf(g));
             pb.setMax(g);
             Log.e("Zi","Numa isi da update" +g);
             if (vedem == true)
