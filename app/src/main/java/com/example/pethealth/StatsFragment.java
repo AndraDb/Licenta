@@ -53,13 +53,7 @@ private String mm;
 
 
         month=view.findViewById(R.id.monthS);
-        /*Cursor cursor =myDb.;
-        if(cursor.getCount()==0)
-        {
-            toastMessage("Nothing to show.Please select other month");
 
-        }
-        */
 
        month.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,42 +78,7 @@ private String mm;
             }
 
         });
-       // myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 1000,400,6,6);
-      // myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 1500,410,5,6);
-       // myDb.insertDataMonitor(FirebaseAuth.getInstance().getCurrentUser().getUid(), 0, 2500,450,4,6);
-       /* tableLayout=(TableLayout)view.findViewById(R.id.tableLayout);
-         Cursor data=database.rawQuery("Select * from Pet_Monitor",null);
 
-
-         data.moveToFirst();
-      do {
-          TableRow row= new TableRow(getContext());
-          TextView day  = (TextView) view.findViewById(R.id.day);
-          TextView month  = (TextView) view.findViewById(R.id.month);
-          TextView steps  = (TextView) view.findViewById(R.id.steps);
-
-          TextView calories  = (TextView) view.findViewById(R.id.calories);
-
-
-
-          //day.setText(myDb.getDate(FirebaseAuth.getInstance().getCurrentUser().getUid()));
-            month.setText("05");
-           // steps.setText(myDb.getSteps(FirebaseAuth.getInstance().getCurrentUser().getUid()));
-            //calories.setText(myDb.getCalories(FirebaseAuth.getInstance().getCurrentUser().getUid()));
-   day.setText(data.getString(4));
-         // month.setText(data.getString(4));
-          steps.setText(data.getString(2));
-          calories.setText(data.getString(3));
-          row.removeAllViews();
-      /* row.addView(day);
-       row.addView(month);
-       row.addView(steps);
-       row.addView(calories);
-       tableLayout.addView(row);
-       row.removeAllViews();
-       } while (data.moveToNext());
-        data.close();
-*/
         return view;
     }
 
@@ -168,21 +127,6 @@ private String mm;
 
 
 
-     /*   if (mAdapter == null) {
-            mAdapter = new ArrayAdapter<>(getContext(),
-                    R.layout.item_stats,
-
-                    statsList);
-            mStatsList.setAdapter(mAdapter);
-        } else {
-            mAdapter.clear();
-            mAdapter.addAll(statsList);
-            mAdapter.notifyDataSetChanged();
-        }
-
-        cursor.close();
-        db.close();
-        */
         }
     }
 }

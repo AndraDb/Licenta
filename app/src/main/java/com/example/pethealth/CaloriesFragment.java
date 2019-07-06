@@ -78,13 +78,13 @@ public class CaloriesFragment extends Fragment {
                 day=now.get(now.DAY_OF_MONTH);
                  myDb.updateCal(FirebaseAuth.getInstance().getCurrentUser().getUid(),today,day,month);
                 if(today>f)
-                    war.setText("WARNING!Too many calories today , try to cut off a bit");
+                    war.setText("WARNING!Too many calories today");
                 else
                 if(today<f)
-                    war.setText("Calories intake too low , please fed your pet more");
+                    war.setText("Calories intake too low, please fed your pet more");
                 else
                 if(today==f)
-                    war.setText("YAY! Perfect caloric intake ! Keep going !");
+                    war.setText("YAY! Perfect caloric intake! Keep going!");
                 else
                     war.setText("Let`s see how are you doing");
             }

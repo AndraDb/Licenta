@@ -69,10 +69,10 @@ public class Register2Activity extends AppCompatActivity {
                         Log.e("Pet", "S-a inserat numa bine");
                     else
                         Log.e("Pet", "nuuuuuuu");
+
+
+                    startActivity(new Intent(Register2Activity.this, SplashScreen.class));
                 }
-
-
-                startActivity(new Intent(Register2Activity.this, SplashScreen.class));
 
             }
         });
